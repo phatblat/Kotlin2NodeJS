@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/phatblat/Kotlin2NodeJS#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "kotlin": "^1.1.4"
   }
 }
