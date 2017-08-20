@@ -1,10 +1,10 @@
+# macOS
 .DS_Store
-*.xccheckout
-*.xcscmblueprint
-xcuserdata
-Carthage/
-Pods/
-.rubygems/
-bin/
+
+# Gradle
 build/
 .gradle/
+
+# IntelliJ IDEA
+.idea/
+*.iml
