@@ -1,8 +1,8 @@
-group 'node-example'
+group 'at.phatbl'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.1'
+    ext.kotlin_version = '1.1.4'
     repositories {
         mavenCentral()
     }
@@ -24,4 +24,12 @@ dependencies {
 compileKotlin2Js.kotlinOptions {
     moduleKind = "commonjs"
     outputFile = "node/index.js"
+}
+
+task removeBatchFile(type: Delete) { delete 'gradlew.bat' }
+
+wrapper {
+    gradleVersion = '4.1'
+    distributionType = 'ALL'
+    finalizedBy removeBatchFile
 }
