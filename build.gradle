@@ -37,8 +37,10 @@ wrapper {
 
 /* -----[ Custom Tasks ]--------------------------------------------------------------------------------------------- */
 
+/**
+ * Generates definitions in Kotlin from the Realm NPM package. Run manually as the generated files need edits to compile
+ * successfully.
+ */
 task generateKotlinHeadersForRealmJS(type: Exec) {
     commandLine "ts2kt -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
 }
-
-tasks.compileKotlin2Js.dependsOn generateKotlinHeadersForRealmJS
