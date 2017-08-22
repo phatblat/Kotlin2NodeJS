@@ -1,12 +1,14 @@
 import kotlin.js.Promise
-//import realm.Realm
+import Realm.Sync.User
+//import Realm
+//import Sync
 
 // TODO: Change alias after realm js library stubs successfully imported.
-typealias RealmType = Any
+//typealias RealmType = Any
 
 external fun require(module: String): dynamic
 
-val Realm = require("realm")
+//val Realm = require("realm")
 
 val username    = "test@imac.local"
 val password    = "password"
@@ -17,27 +19,31 @@ val realm_url   = "realm://$hostname:9080/~/RealmNode"
 fun main(args: Array<String>) {
     println("main(), args: $args")
 
-    val realmPromise = Promise<RealmType>({ resolve, reject ->
-        if (!Realm.Sync.User.current) {
+    val realmPromise = Promise<Realm>({ resolve, reject ->
+        if (User.current == null) {
             console.log("Logging into realm object server $server_url as user $username")
 
-            Realm.Sync.User.login(server_url, username, password, { error, user ->
-                if (error) {
+            User.login(server_url, username, password, { error, user ->
+                if (error != null) {
                     console.log("Error logging in")
                     reject(Exception("Error logging in"))
                 }
 
                 console.log("Successfully logged in")
-                resolve(openRealm(Realm.Sync.User.current))
+                openRealm(User.current).then({ realm ->
+                    resolve(realm)
+                })
             })
         }
 
-        console.log("Realm user ${Realm.Sync.User.current.identity} is currently logged in")
-        resolve(openRealm(Realm.Sync.User.current))
+        console.log("Realm user ${User.current.identity} is currently logged in")
+        openRealm(User.current).then({ realm ->
+            resolve(realm)
+        })
     })
 }
 
-fun openRealm(user: User) {
+fun openRealm(user: User): Promise<Realm> {
     val config = mapOf(
         "sync" to mapOf(
             "user" to user,
