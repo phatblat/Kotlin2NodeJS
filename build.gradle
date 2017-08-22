@@ -11,6 +11,14 @@ buildscript {
     }
 }
 
+task removeBatchFile(type: Delete) { delete 'gradlew.bat' }
+
+wrapper {
+    gradleVersion = '4.1'
+    distributionType = 'ALL'
+    finalizedBy removeBatchFile
+}
+
 apply plugin: 'kotlin2js'
 
 repositories {
@@ -28,12 +36,10 @@ compileKotlin2Js.kotlinOptions {
     sourceMap = true
 }
 
-task removeBatchFile(type: Delete) { delete 'gradlew.bat' }
-
-wrapper {
-    gradleVersion = '4.1'
-    distributionType = 'ALL'
-    finalizedBy removeBatchFile
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
 }
 
 /* -----[ Custom Tasks ]--------------------------------------------------------------------------------------------- */
