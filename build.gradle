@@ -34,3 +34,9 @@ wrapper {
     distributionType = 'ALL'
     finalizedBy removeBatchFile
 }
+
+/* -----[ Custom Tasks ]--------------------------------------------------------------------------------------------- */
+
+task generateKotlinHeadersForRealmJS(type: Exec) {
+    commandLine "ts2kt -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
+}
