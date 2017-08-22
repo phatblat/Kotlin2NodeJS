@@ -22,8 +22,9 @@ dependencies {
 }
 
 compileKotlin2Js.kotlinOptions {
-    moduleKind = "commonjs"
     outputFile = "node/index.js"
+    moduleKind = "commonjs"
+    sourceMap = true
 }
 
 task removeBatchFile(type: Delete) { delete 'gradlew.bat' }
