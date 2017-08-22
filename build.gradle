@@ -40,3 +40,5 @@ wrapper {
 task generateKotlinHeadersForRealmJS(type: Exec) {
     commandLine "ts2kt -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
 }
+
+tasks.compileKotlin2Js.dependsOn generateKotlinHeadersForRealmJS
