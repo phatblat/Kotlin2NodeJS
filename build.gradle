@@ -29,11 +29,16 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
 
+/**
+ * @see https://kotlinlang.org/docs/reference/using-gradle.html#attributes-specific-for-js
+ */
 compileKotlin2Js.kotlinOptions {
     outputFile = "node/index.js"
     moduleKind = "commonjs"
     metaInfo = true
     sourceMap = true
+    // Generate ES6 (ECMAScript 6, 2015) compliant .js files.
+    target = "v6"
 }
 
 kotlin {
