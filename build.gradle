@@ -56,3 +56,11 @@ kotlin {
 task generateKotlinHeadersForRealmJS(type: Exec) {
     commandLine "ts2kt -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
 }
+
+/**
+ * Launches node app through npm.
+ */
+task run(type: Exec) {
+    dependsOn build
+    commandLine "npm start".tokenize()
+}
