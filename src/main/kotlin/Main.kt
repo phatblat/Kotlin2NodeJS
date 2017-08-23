@@ -41,7 +41,7 @@ fun main(args: Array<String>) {
 //        process.exit()
     })
     .catch({ error ->
-        console.log("Error: " + error)
+        console.log(error)
 //        process.exit(1)
     })
 }
@@ -81,15 +81,23 @@ fun login(server_url: String, username: String, password: String): Promise<User>
  */
 fun openRealm(user: User): Promise<Realm> {
     // Anonymous object
-    val config = object : Configuration {
-        override var sync: SyncConfiguration? = object : SyncConfiguration {
-            override var user = user
-            override var url = realm_url
-        }
-        override var schema = arrayOf(
+//    val config = object : Configuration {
+//        override var sync: SyncConfiguration? = object : SyncConfiguration {
+//            override var user = user
+//            override var url = realm_url
+//        }
+//        override var schema = arrayOf(
+//            Event()
+//        )
+//    }
+
+    // Configuration subclass
+    val config = RealmConfiguration(
+        RealmSyncConfiguration(user, realm_url),
+        arrayOf(
             Event()
         )
-    }
+    )
 
     // Open the realm
     // synchronously
@@ -107,5 +115,5 @@ fun openRealm(user: User): Promise<Realm> {
     // })
 
     // as a Promise
-    return Realm.open(config)
+    return Realm.open(config as Configuration)
 }
