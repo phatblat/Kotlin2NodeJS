@@ -1,6 +1,7 @@
 import realm.Configuration
 import realm.sync.SyncConfiguration
 import kotlin.js.Promise
+import kotlin.js.*
 import realm.sync.User
 import realm.sync.ObjectPropsType
 
@@ -10,23 +11,21 @@ val username    = "test@imac.local"
 val password    = "password"
 val hostname    = "imac.local"
 val server_url  = "http://$hostname:9080"
-val realm_url   = "realm://$hostname:9080/~/RealmNode"
+val realm_url   = "realm://$hostname:9080/~/RealmNode2"
 
 fun main(args: Array<String>) {
     println("main(), args: $args")
 
     Promise<Realm>({ resolve, reject ->
-        login(server_url, username, password)
-        .then({ user ->
+        login(server_url, username, password).then({ user ->
             openRealm(user).then({ realm ->
-
                 realm.write({
-                    val app_user = realm.create(
-                        "User",
-                        mapOf("id" to "user101", "name" to "User 101") as ObjectPropsType,
+                    val event = realm.create(
+                        "Event",
+                        mapOf("id" to "event1", "name" to "Event One") as ObjectPropsType,
                         true
                     )
-                    console.log("Created user " + app_user)
+                    console.log("Created event " + event)
                     resolve(realm)
                 })
             })
@@ -81,14 +80,14 @@ fun login(server_url: String, username: String, password: String): Promise<User>
  * @return Promise that resolves to a realm.
  */
 fun openRealm(user: User): Promise<Realm> {
-    val syncConfig = object : SyncConfiguration {
-        override var user = user
-        override var url = realm_url
-    }
+    // Anonymous object
     val config = object : Configuration {
-        override var sync: SyncConfiguration? = syncConfig
+        override var sync: SyncConfiguration? = object : SyncConfiguration {
+            override var user = user
+            override var url = realm_url
+        }
         override var schema = arrayOf(
-            UserSchema()
+            Event()
         )
     }
 
