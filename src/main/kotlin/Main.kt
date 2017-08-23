@@ -1,14 +1,9 @@
+import realm.Configuration
+import realm.sync.SyncConfiguration
 import kotlin.js.Promise
-import Realm.Sync.User
-//import Realm
-//import Sync
-
-// TODO: Change alias after realm js library stubs successfully imported.
-//typealias RealmType = Any
+import realm.sync.User
 
 external fun require(module: String): dynamic
-
-//val Realm = require("realm")
 
 val username    = "test@imac.local"
 val password    = "password"
@@ -44,15 +39,16 @@ fun main(args: Array<String>) {
 }
 
 fun openRealm(user: User): Promise<Realm> {
-    val config = mapOf(
-        "sync" to mapOf(
-            "user" to user,
-            "url" to realm_url
-        ),
-        "schema" to arrayOf(
+    val syncConfig = object : SyncConfiguration {
+        override var user = user
+        override var url = realm_url
+    }
+    val config = object : Configuration {
+        override var sync: SyncConfiguration? = syncConfig
+        override var schema = arrayOf(
             UserSchema()
         )
-    )
+    }
 
     // Open the realm
     // synchronously
