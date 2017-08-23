@@ -15,5 +15,7 @@ node/
 
 # Realm
 realm-object-server/
-*.realm*
+*.realm
+*.realm.lock
+*.realm.management
 \[object Object\]*
