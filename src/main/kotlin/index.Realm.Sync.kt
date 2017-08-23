@@ -74,14 +74,14 @@ external open class AuthError {
     open var code: Number = definedExternally
     open var type: String = definedExternally
 }
-external interface `T$6` {
+external interface ObjectPropsType {
     @nativeGetter
     operator fun get(object_type: String): CollectionChangeSet?
     @nativeSetter
     operator fun set(object_type: String, value: CollectionChangeSet)
 }
 external interface ChangeEvent {
-    var changes: `T$6`
+    var changes: ObjectPropsType
     var oldRealm: Realm
     var path: String
     var realm: Realm
