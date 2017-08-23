@@ -42,7 +42,7 @@ fun main(args: Array<String>) {
  * @return Promise that resolves to a realm.
  */
 fun login(server_url: String, username: String, password: String): Promise<User> {
-    var current_user = User.current
+    val current_user = User.current
     if (current_user != null) {
         console.log("Realm user ${current_user.identity} is currently logged in")
         return Promise.resolve(current_user)
