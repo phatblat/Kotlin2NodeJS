@@ -2,6 +2,7 @@ import realm.Configuration
 import realm.sync.SyncConfiguration
 import kotlin.js.Promise
 import realm.sync.User
+import realm.sync.ObjectPropsType
 
 external fun require(module: String): dynamic
 
@@ -18,7 +19,16 @@ fun main(args: Array<String>) {
         login(server_url, username, password)
         .then({ user ->
             openRealm(user).then({ realm ->
-                resolve(realm)
+
+                realm.write({
+                    val app_user = realm.create(
+                        "User",
+                        mapOf("id" to "user101", "name" to "User 101") as ObjectPropsType,
+                        true
+                    )
+                    console.log("Created user " + app_user)
+                    resolve(realm)
+                })
             })
         })
         .catch({ error ->
