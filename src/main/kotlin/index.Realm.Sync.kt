@@ -1,6 +1,9 @@
 @file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
 @file:JsQualifier("Realm.Sync")
-package Realm.Sync
+package realm.sync
+
+import Realm
+import realm.*
 
 import kotlin.js.*
 import kotlin.js.Json
@@ -83,7 +86,7 @@ external interface ChangeEvent {
     var path: String
     var realm: Realm
 }
-external fun addListener(serverURL: String, adminUser: Realm.Sync.User, regex: String, name: String, changeCallback: (changeEvent: ChangeEvent) -> Unit): Unit = definedExternally
+external fun addListener(serverURL: String, adminUser: User, regex: String, name: String, changeCallback: (changeEvent: ChangeEvent) -> Unit): Unit = definedExternally
 external fun removeAllListeners(name: String? = definedExternally /* null */): Unit = definedExternally
 external fun removeListener(regex: String, name: String, changeCallback: (changeEvent: ChangeEvent) -> Unit): Unit = definedExternally
 external fun setLogLevel(logLevel: Any /* "error" */): Unit = definedExternally

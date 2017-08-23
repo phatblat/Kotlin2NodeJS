@@ -1,6 +1,9 @@
 @file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS")
 @file:[JsQualifier("Realm") JsModule("realm")]
-package Realm
+package realm
+
+import Realm
+import realm.sync.*
 
 import kotlin.js.*
 import kotlin.js.Json
@@ -69,7 +72,7 @@ external interface Configuration {
     var readOnly: Boolean? get() = definedExternally; set(value) = definedExternally
     var schema: dynamic /* Array<ObjectClass> | Array<ObjectSchema> */ get() = definedExternally; set(value) = definedExternally
     var schemaVersion: Number? get() = definedExternally; set(value) = definedExternally
-    var sync: Realm.Sync.SyncConfiguration? get() = definedExternally; set(value) = definedExternally
+    var sync: SyncConfiguration? get() = definedExternally; set(value) = definedExternally
 }
 external interface ObjectPropsType {
     @nativeGetter
@@ -81,8 +84,6 @@ external interface Object {
     fun isValid(): Boolean
     fun objectSchema(): ObjectSchema
     fun <T> linkingObjects(objectType: String, property: String): Results<T>
-    companion object : ``T$0` by definedExternally: `T$0`` {
-    }
 }
 external interface `T$0` {
     var prototype: Any
@@ -92,7 +93,7 @@ external interface CollectionChangeSet {
     var deletions: Array<Number>
     var modifications: Array<Number>
 }
-external interface Collection<T> : ReadonlyArray<T> {
+external interface Collection<T> {
     fun isValid(): Boolean
     fun filtered(query: String, vararg arg: Any): Results<T>
     fun sorted(descriptor: String, reverse: Boolean? = definedExternally /* null */): Results<T>
@@ -101,8 +102,6 @@ external interface Collection<T> : ReadonlyArray<T> {
     fun addListener(callback: (collection: Collection<T>, change: CollectionChangeSet) -> Unit)
     fun removeAllListeners()
     fun removeListener(callback: (collection: Collection<T>, change: CollectionChangeSet) -> Unit)
-    companion object : ``T$1` by definedExternally: `T$1`` {
-    }
 }
 external interface `T$1` {
     var prototype: Collection<Any>
@@ -117,13 +116,17 @@ external interface List<T> : Collection<T> {
     fun shift(): T?
     fun splice(index: Number, count: Number? = definedExternally /* null */, `object`: Any? = definedExternally /* null */): Array<T>
     fun unshift(`object`: T): Number
-    companion object : ``T$2` by definedExternally: `T$2`` {
-    }
 }
 external interface `T$2` {
     var prototype: List<Any>
 }
-external var Results: `T$3` = definedExternally
-external interface `T$3` {
-    var prototype: Results<Any>
+external open class Results<T>: Collection<T> {
+    override fun isValid(): Boolean = definedExternally
+    override fun filtered(query: String, vararg arg: Any): Results<T> { definedExternally }
+    override fun sorted(descriptor: String, reverse: Boolean?): Results<T> { definedExternally }
+    override fun sorted(descriptor: Array<Any>, reverse: Boolean?): Results<T> { definedExternally }
+    override fun snapshot(): Results<T> { definedExternally }
+    override fun addListener(callback: (collection: Collection<T>, change: CollectionChangeSet) -> Unit) { definedExternally }
+    override fun removeAllListeners() { definedExternally }
+    override fun removeListener(callback: (collection: Collection<T>, change: CollectionChangeSet) -> Unit) { definedExternally }
 }
