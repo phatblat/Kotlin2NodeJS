@@ -56,6 +56,6 @@ external open class Realm {
         fun schemaVersion(path: String, encryptionKey: ArrayBuffer? = definedExternally /* null */): Number = definedExternally
         fun schemaVersion(path: String, encryptionKey: ArrayBufferView? = definedExternally /* null */): Number = definedExternally
         fun open(config: Configuration): Promise<Realm> = definedExternally
-        fun openAsync(config: Configuration, callback: (error: Any, realm: Realm) -> Unit): Unit = definedExternally
+        fun openAsync(config: Configuration, callback: (error: Error?, realm: Realm?) -> Unit): Unit = definedExternally
     }
 }

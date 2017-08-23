@@ -50,11 +50,11 @@ external open class User {
     open fun retrieveAccount(provider: String, username: String): Promise<Account> = definedExternally
     companion object {
         var all: `T$4` = definedExternally
-        var current: User = definedExternally
+        var current: User? = definedExternally
         fun adminUser(adminToken: String, server: String? = definedExternally /* null */): User = definedExternally
-        fun login(server: String, username: String, password: String, callback: (error: Any, user: User) -> Unit): Unit = definedExternally
-        fun loginWithProvider(server: String, provider: String, providerToken: String, callback: (error: Any, user: User) -> Unit): Unit = definedExternally
-        fun register(server: String, username: String, password: String, callback: (error: Any, user: User) -> Unit): Unit = definedExternally
+        fun login(server: String, username: String, password: String, callback: (error: Error?, user: User?) -> Unit): Unit = definedExternally
+        fun loginWithProvider(server: String, provider: String, providerToken: String, callback: (error: Error?, user: User?) -> Unit): Unit = definedExternally
+        fun register(server: String, username: String, password: String, callback: (error: Error?, user: User?) -> Unit): Unit = definedExternally
         fun registerWithProvider(server: String, options: `T$5`, callback: (error: Error?, user: User?) -> Unit): Unit = definedExternally
     }
 }
