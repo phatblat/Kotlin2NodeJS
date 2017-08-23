@@ -16,3 +16,4 @@ node/
 # Realm
 realm-object-server/
 *.realm*
+\[object Object\]*
