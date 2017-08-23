@@ -12,3 +12,7 @@ build/
 # Node
 node_modules/
 node/
+
+# Realm
+realm-object-server/
+*.realm*
