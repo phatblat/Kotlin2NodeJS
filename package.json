@@ -40,5 +40,8 @@
     "rules": {
       "semi": "off"
     }
+  },
+  "devDependencies": {
+    "ts2kt": "0.0.14"
   }
 }

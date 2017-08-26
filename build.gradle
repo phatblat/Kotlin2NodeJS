@@ -54,7 +54,7 @@ kotlin {
  * successfully.
  */
 task generateKotlinHeadersForRealmJS(type: Exec) {
-    commandLine "ts2kt -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
+    commandLine "node_modules/ts2kt/ts2kt.js -d src/main/kotlin node_modules/realm/lib/index.d.ts".tokenize()
 }
 
 /**
