@@ -29,6 +29,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
 
+kotlin.experimental.coroutines 'enable'
+
 /**
  * @see https://kotlinlang.org/docs/reference/using-gradle.html#attributes-specific-for-js
  */
@@ -39,12 +41,6 @@ compileKotlin2Js.kotlinOptions {
     sourceMap = true
     // Generate ES6 (ECMAScript 6, 2015) compliant .js files.
     target = "v6"
-}
-
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
 }
 
 /* -----[ Custom Tasks ]--------------------------------------------------------------------------------------------- */
