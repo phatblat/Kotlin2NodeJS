@@ -43,6 +43,34 @@ compileKotlin2Js.kotlinOptions {
     target = "v6"
 }
 
+// Copy source set dependencies copies to the build output directory.
+// https://gist.github.com/ElFeesho/617cc58979b1172c7add31c2986fd8c0
+build.doLast() {
+    // Augmented from https://github.com/bascan/kotlin-js-example/blob/master/build.gradle
+
+    def jsFileFilter = { fileTreeElement ->
+        def path = fileTreeElement.path
+        path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+    }
+
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+            from zipTree(file.absolutePath)
+            into "${project.buildDir}/classes/main/lib"
+            include(jsFileFilter)
+        }
+    }
+    configurations.testCompile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+            from zipTree(file.absolutePath)
+            into "${project.buildDir}/classes/test/lib"
+            include(jsFileFilter)
+        }
+    }
+}
+
 /* -----[ Custom Tasks ]--------------------------------------------------------------------------------------------- */
 
 /**
