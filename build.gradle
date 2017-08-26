@@ -31,6 +31,11 @@ dependencies {
 
 kotlin.experimental.coroutines 'enable'
 
+sourceSets {
+    main.kotlin.srcDirs += "src/main/kotlin"
+    test.kotlin.srcDirs += "src/test/kotlin"
+}
+
 /**
  * @see https://kotlinlang.org/docs/reference/using-gradle.html#attributes-specific-for-js
  */
@@ -41,6 +46,11 @@ compileKotlin2Js.kotlinOptions {
     sourceMap = true
     // Generate ES6 (ECMAScript 6, 2015) compliant .js files.
     target = "v6"
+}
+
+compileTestKotlin2Js.kotlinOptions {
+    moduleKind = "commonjs"
+    kotlinOptions.sourceMap = true
 }
 
 // Copy source set dependencies copies to the build output directory.
