@@ -24,5 +24,21 @@
   "dependencies": {
     "kotlin": "^1.1.4",
     "realm": "^1.10.3"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "ecmaFeatures": {
+      "impliedStrict": true
+    },
+    "rules": {
+      "semi": "off"
+    }
   }
 }
