@@ -2,9 +2,9 @@
   "name": "kotlin2js",
   "version": "1.0.0",
   "description": "Generating a node app from Kotlin source",
-  "main": "node/index.js",
+  "main": "build/js/module.js",
   "scripts": {
-    "start": "node node/index.js",
+    "start": "node build/js/module.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

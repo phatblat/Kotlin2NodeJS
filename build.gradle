@@ -33,7 +33,7 @@ dependencies {
  * @see https://kotlinlang.org/docs/reference/using-gradle.html#attributes-specific-for-js
  */
 compileKotlin2Js.kotlinOptions {
-    outputFile = "node/index.js"
+    outputFile = "build/js/module.js"
     moduleKind = "commonjs"
     metaInfo = true
     sourceMap = true
