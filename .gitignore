@@ -8,6 +8,7 @@ build/
 # IntelliJ IDEA
 .idea/
 *.iml
+out/
 
 # Node
 node_modules/
