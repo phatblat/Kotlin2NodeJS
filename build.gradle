@@ -50,7 +50,7 @@ compileKotlin2Js.kotlinOptions {
 
 compileTestKotlin2Js.kotlinOptions {
     moduleKind = "commonjs"
-    kotlinOptions.sourceMap = true
+    sourceMap = true
 }
 
 // Copy source set dependencies copies to the build output directory.
