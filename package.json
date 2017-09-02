@@ -25,6 +25,9 @@
     "kotlin": "^1.1.4",
     "realm": "^1.10.3"
   },
+  "devDependencies": {
+    "ts2kt": "0.0.14"
+  },
   "eslintConfig": {
     "env": {
       "es6": true,
@@ -40,8 +43,5 @@
     "rules": {
       "semi": "off"
     }
-  },
-  "devDependencies": {
-    "ts2kt": "0.0.14"
   }
 }
