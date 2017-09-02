@@ -9,7 +9,7 @@ external fun require(module: String): dynamic
 
 val username    = "test@imac.local"
 val password    = "password"
-val hostname    = "imac.local"
+val hostname    = "localhost"
 val server_url  = "http://$hostname:9080"
 val realm_url   = "realm://$hostname:9080/~/RealmNode2"
 
